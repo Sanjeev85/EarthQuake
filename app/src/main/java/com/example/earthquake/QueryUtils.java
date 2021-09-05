@@ -6,12 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.SimpleTimeZone;
-
-import static java.lang.Long.parseLong;
 
 public class QueryUtils {
     /**
@@ -58,13 +53,13 @@ public class QueryUtils {
             for (int i = 0; i < JSONArr.length(); i++) {
                 JSONObject ithobject = JSONArr.optJSONObject(i);
                 JSONObject propertiesObj = ithobject.getJSONObject("properties");
-                String magnitude = propertiesObj.getString("mag");
+                double magnitude = propertiesObj.getDouble("mag");
                 String Place = propertiesObj.getString("place");
                 //it can also be done
                 long timeinmillisecond = propertiesObj.getLong("time");
 
                 /**
-                 * Converting unix date to human readable usign date and simpledate class
+                 * Converting unix date to human readable using date and simpledate class
                  * below code is shifted in earthquake adapter class kindly refer it
                  * */
 
