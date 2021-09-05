@@ -6,7 +6,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.SimpleTimeZone;
+
+import static java.lang.Long.parseLong;
 
 public class QueryUtils {
     /**
@@ -31,7 +36,7 @@ public class QueryUtils {
     private QueryUtils() {
     }
 
-     /**
+    /**
      * Return a list of {@link Earthquake} objects that has been built up from
      * parsing a JSON response.
      */
@@ -50,14 +55,26 @@ public class QueryUtils {
             JSONObject root = new JSONObject(SAMPLE_JSON_RESPONSE);
             //extracted features json array
             JSONArray JSONArr = root.optJSONArray("features");
-            for(int i = 0;i < JSONArr.length(); i++) {
+            for (int i = 0; i < JSONArr.length(); i++) {
                 JSONObject ithobject = JSONArr.optJSONObject(i);
                 JSONObject propertiesObj = ithobject.getJSONObject("properties");
                 String magnitude = propertiesObj.getString("mag");
                 String Place = propertiesObj.getString("place");
                 String Time = propertiesObj.getString("time");
+
+                /**
+                 * Converting unix date to human readable usign date and simpledate class
+                 * */
+                //convert string time into milli second
+                long timeinmillisecond = parseLong(Time);
+                Date dateObject = new Date(timeinmillisecond);
+                //now configure it into simple date time format according to location
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy");
+                String datetoDisplay = dateFormatter.format(dateObject);
+
+
                 //pushback to arraylist
-                earthquakes.add(new Earthquake(magnitude, Place, Time));
+                earthquakes.add(new Earthquake(magnitude, Place, datetoDisplay));
             }
 
         } catch (JSONException e) {
