@@ -60,21 +60,16 @@ public class QueryUtils {
                 JSONObject propertiesObj = ithobject.getJSONObject("properties");
                 String magnitude = propertiesObj.getString("mag");
                 String Place = propertiesObj.getString("place");
-                String Time = propertiesObj.getString("time");
+                //it can also be done
+                long timeinmillisecond = propertiesObj.getLong("time");
 
                 /**
                  * Converting unix date to human readable usign date and simpledate class
+                 * below code is shifted in earthquake adapter class kindly refer it
                  * */
-                //convert string time into milli second
-                long timeinmillisecond = parseLong(Time);
-                Date dateObject = new Date(timeinmillisecond);
-                //now configure it into simple date time format according to location
-                SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy");
-                String datetoDisplay = dateFormatter.format(dateObject);
-
 
                 //pushback to arraylist
-                earthquakes.add(new Earthquake(magnitude, Place, datetoDisplay));
+                earthquakes.add(new Earthquake(magnitude, Place, timeinmillisecond));
             }
 
         } catch (JSONException e) {

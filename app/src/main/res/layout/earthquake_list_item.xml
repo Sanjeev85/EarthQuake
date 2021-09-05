@@ -35,5 +35,15 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         tools:text="Date" />
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="2"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:text="Time"
+        />
 
 </LinearLayout>

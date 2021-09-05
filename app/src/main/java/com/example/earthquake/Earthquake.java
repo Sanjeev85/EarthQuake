@@ -1,12 +1,13 @@
 package com.example.earthquake;
 
 public class Earthquake {
-    private String mLocation, mDate, mMagnitude;
+    private String mLocation, mMagnitude;
+    private long mTimeinMillisec;
 
-    Earthquake(String magnitude, String loc, String date) {
+    Earthquake(String magnitude, String loc, long time) {
         this.mMagnitude = magnitude;
         this.mLocation = loc;
-        this.mDate = date;
+        this.mTimeinMillisec = time;
     }
 
     public String getmMagnitude() {
@@ -17,7 +18,7 @@ public class Earthquake {
         return mLocation;
     }
 
-    public String getmDate() {
-        return mDate;
+    public long getTimeInMilliseconds() {
+        return mTimeinMillisec;
     }
 }
