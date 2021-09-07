@@ -1,7 +1,7 @@
 package com.example.earthquake;
 
 public class Earthquake {
-    private String mLocation;
+    private String mLocation, mUrl;
     private long mTimeInMilliseconds;
     private double mMagnitude;
 
@@ -20,6 +20,13 @@ public class Earthquake {
         mTimeInMilliseconds = timeInMilliseconds;
     }
 
+    public Earthquake(double magnitude, String location, long timeInMilliseconds, String url) {
+        mMagnitude = magnitude;
+        mLocation = location;
+        mTimeInMilliseconds = timeInMilliseconds;
+        mUrl = url;
+    }
+
 
     public double getmMagnitude() {
         return mMagnitude;
@@ -33,4 +40,7 @@ public class Earthquake {
         return mTimeInMilliseconds;
     }
 
+    public String getmUrl() {
+        return mUrl;
+    }
 }
